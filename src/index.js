@@ -4,18 +4,13 @@ import './index.css';
 import File1Points from'./points.js'
 import GoogleMapReact from 'google-map-react';
 
-const Marker = ({ icon1 }) => <div className='tooltip'>
+const Marker = ({ icon1,image }) => <div className='tooltip'>
     <span class="tooltiptext">{icon1}</span>
-    <img src={require('./red-icon.png')} 
+    <img src={require('./'+ image)} 
         alt='file1'
         className='marker-image' />
     </div>;
-const Marker2 = ({ icon1 }) => <div className='tooltip'>
-    <span class="tooltiptext">{icon1}</span>
-    <img src={require('./blue-icon.png')} 
-        alt='file1'
-        className='marker-image' />
-    </div>;
+    
 class Map extends React.Component {
     static defaultProps = {
         center: {
@@ -30,20 +25,21 @@ class Map extends React.Component {
         <Marker 
             lat={marker.lat}
             lng={marker.lng}
-            icon1={marker.name}/>
-
+            icon1={marker.name}
+            image={'red-icon.png'}/>
+            
         ));
 
         const  File2Markers = File1Points.file2_points.map(marker => (
-        <Marker2 
+        <Marker 
             lat={marker.lat}
             lng={marker.lng}
-            icon1={marker.name}/>
+            icon1={marker.name}
+            image={'blue-icon.png'}/>
 
         ));
 
         return (
-            // Important! Always set the container height explicitly
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyBbzhECkzojSq2Vyke0wZj6eC6cnJ6l5q0' }}
